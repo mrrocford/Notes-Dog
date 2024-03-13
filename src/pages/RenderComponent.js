@@ -7,6 +7,7 @@ import { useFetch } from "../components/hooks/useFetch";
 import InputComponent from '../components/InputComponent';
 import ButtonComponent from '../components/ButtonComponent';
 import TodosListComponent from '../components/TodosListComponent';
+import { Link } from "react-router-dom";
 
 
 const NotesStyled = styled.div`
@@ -49,13 +50,14 @@ export const InputStyled = styled.input`
     height: 20px;
 `;
 
-export const ButtonStyled = styled.button`
+export const StyledButtonLink = styled(Link)`
     padding: 3px 20px;
     margin-left: 15px;
     font-size: 16px;
     border: 2px solid #3498db;
     border-radius: 5px;
     background-color: transparent;
+    text-decoration: none;
     color: #3498db;
     cursor: pointer;
     transition: color 0.3s ease, border-color 0.3s ease;
@@ -75,8 +77,6 @@ export const ButtonStyled = styled.button`
         margin-top: 10px; // при потребі
     }
 `;
-
-
 
 axios.defaults.baseURL ='http://localhost:3030/'
 
@@ -127,8 +127,6 @@ const RenderComponent = () => {
 
     const addNote = async () => {
 
-        console.log("addNote called");
-
         setisPostLoading(true);
 
         if (validateInput()) {
@@ -140,12 +138,8 @@ const RenderComponent = () => {
                 creationDate: new Date().toLocaleString()
             };
 
-            console.log(payload);
-
             try {
                 const response = await axios.post("toDos", payload);
-                console.log(response);
-    
                 setData(prev => [...prev, { ...response.data, checked: false }]);
                 setInput('');
                 setTextValue('');
@@ -175,7 +169,6 @@ const RenderComponent = () => {
     };
 
     const saveChanges = async () => {
-        console.log("saveChanges called");
 
         if (!editingNoteId) {
             return; // якщо немає id, не виконуємо збереження
@@ -188,8 +181,6 @@ const RenderComponent = () => {
         };
 
         const response = await axios.put(`toDos/${editingNoteId}`, payload);
-
-        console.log(response);
 
         setData((prev) =>
             prev.map((item) => (item.id === editingNoteId ? response.data : item))
@@ -243,7 +234,6 @@ const RenderComponent = () => {
     };
 
     const handleClick = () => {
-        console.log("Button clicked");
         isEdit ? saveChanges() : addNote();
     };
 
@@ -265,6 +255,7 @@ const RenderComponent = () => {
                     isEdit={isEdit}
                     handleClick={handleClick}
             />
+            
             <TodosListComponent
                     filteredNotes={filteredNotes}
                     filter={filter}
@@ -279,6 +270,7 @@ const RenderComponent = () => {
                     searchQuery={searchQuery}
                     addNewToDo={addNewToDo}
                 />
+            
         </ContainerStyled>
     </NotesStyled>
     </>);

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonStyled } from "../pages/RenderComponent";
+import {StyledButtonLink } from "../pages/RenderComponent";
 
 const ItemStyled = styled.div`
     font-size: 16px;
@@ -25,6 +25,7 @@ const TodosList = (props) => {
     }
 
     return(
+        <>
         <ItemStyled checked={props.checked}>
             <WrapperContainer>
                 <input
@@ -40,10 +41,11 @@ const TodosList = (props) => {
                     <p>{props.creationDate}</p>
                 </ItemContainer>
             </WrapperContainer>
-            <ButtonStyled onClick={() => props.onDelete(props.id)}>delete</ButtonStyled>
-            <ButtonStyled onClick={() => props.onEdit(props.id)}>edit</ButtonStyled>
         </ItemStyled>
+        <StyledButtonLink to="/list" onClick={() => props.onDelete(props.id)}>delete</StyledButtonLink>
+        <StyledButtonLink to={`/list/${props.id}`} onClick={() => props.onEdit(props.id)}>edit</StyledButtonLink>
+        
+        </>
     );
 };
-
 export default TodosList;

@@ -1,8 +1,10 @@
-import {Routes, Route, Link } from "react-router-dom";
+import {Routes, Route, Link} from "react-router-dom";
 import styled from "styled-components";
 import About from "../pages/About";
 import Home from "../pages/Home";
 import RenderComponent from "../pages/RenderComponent";
+import EditComponent from "../pages/EditComponent";
+import NotFound from "./NotFound";
 
 const StyledHeader = styled.header`
     background-color: #3498db;
@@ -30,13 +32,9 @@ const StyledLink =styled(Link)`
 
 
 
-
-
-
 const Navigation = () => {
 
     return(
-
             <div>
                 <StyledHeader>
                     <nav>
@@ -54,9 +52,11 @@ const Navigation = () => {
                     </nav>
                 </StyledHeader>
                 <Routes>
-                    <Route path="/" element={<Home/>} />
-                    <Route path="/list" element={<RenderComponent/>} />
-                    <Route path="/about" element={<About/>} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/list" element={<RenderComponent />}></Route>
+                    <Route path="/list/:id" element={<EditComponent />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <footer>
                     &copy; 2024 Notes Dog. All rights reserved.

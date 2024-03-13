@@ -1,7 +1,7 @@
 import React from 'react';
 import TodosList from './TodosList';
 import styled from 'styled-components';
-import { ButtonStyled, InputStyled } from "../pages/RenderComponent";
+import { StyledButtonLink , InputStyled } from "../pages/RenderComponent";
 import { Oval } from 'react-loader-spinner';
 
 const CountStyled = styled.p`
@@ -49,7 +49,7 @@ const TodosListComponent = ({
         {filteredNotes.length === 0 ? (
             <div>
                 На даний момент завдання відсутні <br /><br />
-                <ButtonStyled onClick={addNewToDo}>add note</ButtonStyled>
+                <StyledButtonLink onClick={addNewToDo}>add note</StyledButtonLink>
             </div>
         ) : null}
         <UlStyled>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ThreeDots } from 'react-loader-spinner';
-import { ButtonStyled } from "../pages/RenderComponent";
+import { StyledButtonLink  } from "../pages/RenderComponent";
 
 
 const ButtonComponent = ({ isPostLoading, isEdit, handleClick }) => (
-    <ButtonStyled disabled={isPostLoading && isEdit} onClick={handleClick}>
+    <StyledButtonLink  to={isPostLoading && isEdit} onClick={handleClick}>
         {isPostLoading ? (
             <ThreeDots
                 visible={true}
@@ -19,7 +19,7 @@ const ButtonComponent = ({ isPostLoading, isEdit, handleClick }) => (
         ) : (
             isEdit ? "Save" : 'Add'
         )}
-    </ButtonStyled>
+    </StyledButtonLink>
 );
 
 export default ButtonComponent;
