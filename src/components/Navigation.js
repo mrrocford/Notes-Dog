@@ -20,12 +20,22 @@ const StyledLi = styled.li`
     list-style-type: none;
     padding: 5px;
     margin-left: 35px;
-
+    
 `;
 
 const StyledLink =styled(Link)`
     text-decoration: none;
     color: #ffff;
+    :hover{
+        color: yellow;
+    }
+`;
+const StyledFooter = styled.footer`
+    background-color: #3498db;
+    font-size: 12px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
 `;
 
 
@@ -58,9 +68,9 @@ const Navigation = () => {
                     <Route path="/list" element={<RenderComponent/>} />
                     <Route path="/about" element={<About/>} />
                 </Routes>
-                <footer>
+                <StyledFooter>
                     &copy; 2024 Notes Dog. All rights reserved.
-                </footer>
+                </StyledFooter>
             </div>
     
     );
