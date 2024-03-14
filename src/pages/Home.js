@@ -1,15 +1,20 @@
 
+import styled from "styled-components";
 
+const StyledHome = styled.div`
+    width: 80%;
+    height: 90vh;
+`;
 
 
 const Home = () => {
 
     return(
-        <div>
+        <StyledHome>
             <br/>
             Home
             <br/>
-        </div>
+        </StyledHome>
     );
 
 }
